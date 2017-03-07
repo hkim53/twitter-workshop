@@ -1,10 +1,12 @@
 const express = require( 'express' );
 const volleyball = require('volleyball');
 const nunjucks = require('nunjucks');
-const app = express(); // creates an instance of an express application
-app.set('view engine', 'html');
+const app = express();
+const tweets = require('./tweetBank'); // creates an instance of an express application
 
- app.use(volleyball);
+
+app.set('view engine', 'html');
+app.use(volleyball);
 //to make app.use always run, we place it in top
 // app.use(function (req, res, next) {
 //     console.log(req);

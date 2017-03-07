@@ -11,7 +11,7 @@
   "license": "ISC",
   "dependencies": {
     "express": "^4.15.2",
+    "lodash": "^4.17.4",
     "volleyball": "^1.4.1"
-    
   }
 }
