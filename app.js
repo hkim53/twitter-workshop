@@ -3,7 +3,11 @@ const volleyball = require('volleyball');
 const nunjucks = require('nunjucks');
 const app = express();
 const tweets = require('./tweetBank'); // creates an instance of an express application
+const routes = require('./routes');
+const fs = require('fs');
 
+
+//app.use('/', routes);
 
 app.set('view engine', 'html');
 app.use(volleyball);
@@ -12,34 +16,20 @@ app.use(volleyball);
 //     console.log(req);
 //     next();
 // })
-var locals = {
-    title: 'An Example',
-    people: [
-        { name: 'Gandalf'},
-        { name: 'Frodo' },
-        { name: 'Hermione'}
-    ]
-};
+
+
+
+app.get('/stylesheets/style.css', function(request, response) {
+
+      response.sendFile(__dirname + '/public/stylesheets/style.css');
+
+  })
+
 
 nunjucks.configure('views', {noCache: true, autoescape: true,
     express: app});
-app.get('/', function(req, res) {
-    res.render('index', locals);
-});
 
-app.use('/special/', function (req, res, next) {
-  res.send('Hello World!')
-})
 
-app.get('/', function (req, res, next) {
-  res.send('Hello World!')
-  console.log("goodbye world");
-  next();
-})
-
-app.get('/news', function (req, res) {
-  res.send('Get news')
-})
 
 //just establish connection once
 app.listen(3000, function () {
